@@ -1,5 +1,6 @@
-import { Flex } from "aplication-yetz";
+import { Flex, Box } from "aplication-yetz";
 import styled from "styled-components";
+import { Form as Formik } from "formik";
 
 export const Container = styled.div`
     li {
@@ -95,7 +96,7 @@ export const HeaderStyles = styled(Flex)`
     }
 `;
 
-export const Form = styled.form`
+export const Form = styled(Formik)`
     position: relative;
     width: 500px;
     max-width: 100%;
@@ -120,6 +121,21 @@ export const Form = styled.form`
         cursor: pointer;
         &:active {
             transform: scale(0.95);
+        }
+    }
+`;
+
+export const TableStyles = styled(Box)`
+    .table {
+        .tr {
+            &.body {
+                .td {
+                    img {
+                        border-radius: 50%;
+                        margin-right: 16px;
+                    }
+                }
+            }
         }
     }
 `;

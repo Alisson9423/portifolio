@@ -25,4 +25,10 @@ export const GlobalStyle = createGlobalStyle`
         font-family: Arial, Helvetica, sans-serif;
         margin: 0;
     }
+
+    button{
+        background: ${({ theme }) => theme.colors.transparent};
+        cursor: pointer;
+        border: none;
+    }
 `;

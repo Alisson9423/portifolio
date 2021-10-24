@@ -1,4 +1,4 @@
-import { Page } from "../pages/Home";
+import { Page } from "../pages/Letras";
 
 import { routesProps } from "./types";
 
