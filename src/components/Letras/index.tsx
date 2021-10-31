@@ -1,4 +1,10 @@
+import { useEffect, useState } from "react";
+
 import { useLetras } from "../../Hook/UseLetras";
+import { Loader } from "../Loader";
+import { Modal } from "../Modal";
+import { Letra } from "./letra";
+import { Player } from "../Player";
 import { Formik, Field, ErrorMessage, FormikProps } from "formik";
 
 import { initialValues, validation, MyFormValues } from "./config";
@@ -6,8 +12,29 @@ import { TableList } from "./table";
 
 import { Container, HeaderStyles, Form } from "./styles";
 
+interface AudioList {
+    name: string;
+    singer: string;
+    cover: string;
+    musicSrc: string;
+}
+
 export function Letras() {
-    const { fetchSongs, music } = useLetras();
+    const { fetchSongs, music, loader } = useLetras();
+    const [modal, setModal] = useState<boolean>(false);
+    const [audioList, setAudioList] = useState<AudioList[]>([]);
+
+    useEffect(() => {
+        const audioList = music.map((item) => {
+            return {
+                name: item.title,
+                singer: item.artist.name,
+                cover: item.album.cover_big,
+                musicSrc: item.preview,
+            };
+        });
+        setAudioList(audioList);
+    }, [music]);
 
     return (
         <Container>
@@ -19,6 +46,7 @@ export function Letras() {
                     validationSchema={validation}
                     onSubmit={(values, actions) => {
                         const { search } = values;
+                        setAudioList([]);
 
                         fetchSongs(search.trim());
                     }}
@@ -41,23 +69,19 @@ export function Letras() {
                 </Formik>
             </HeaderStyles>
 
-            {console.log(music)}
-
-            {music.length ? <TableList data={music} /> : null}
-            {/* <ul id="songs-container" className="songs-container songs">
-                {music.map((item) => (
-                    <li className="song">
-                        <span className="song-artist">
-                            <strong>{item.artist.name}</strong> - {item.title}
-                        </span>
-                    </li>
-                ))}
-            </ul> */}
+            {music.length && loader === false ? (
+                <TableList data={music} setModal={setModal} />
+            ) : loader ? (
+                <Loader height={300} width={300} />
+            ) : null}
 
             <div
                 id="prev-and-next-container"
                 className="prev-and-next-container"
             ></div>
+
+            {audioList.length && <Player audioList={audioList} />}
+            <Modal component={Letra} active={modal} />
         </Container>
     );
 }

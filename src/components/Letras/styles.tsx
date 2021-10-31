@@ -139,3 +139,45 @@ export const TableStyles = styled(Box)`
         }
     }
 `;
+
+export const ModalStyles = styled(Box)`
+    width: 600px;
+    border-radius: 5px;
+    .container-header {
+        height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0px 20px;
+        background-color: ${({ theme }) => theme.colors.fundoBase};
+        border-radius: 5px 5px 0 0;
+    }
+
+    .content-body {
+        padding: 20px;
+        max-height: 70vh;
+        width: 100%;
+        overflow-y: scroll;
+        background-color: ${({ theme }) => theme.colors.white};
+        border-radius: 0px 0px 5px 5px;
+        &::-webkit-scrollbar {
+            -webkit-appearance: none;
+        }
+
+        &::-webkit-scrollbar:vertical {
+            width: 5px;
+        }
+
+        &::-webkit-scrollbar:horizontal {
+            height: 12px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: rgba(89, 92, 118, 0.5);
+        }
+
+        &::-webkit-scrollbar-track {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+    }
+`;

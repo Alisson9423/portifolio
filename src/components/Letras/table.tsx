@@ -6,6 +6,7 @@ import { TableStyles } from "./styles";
 
 interface TableProps {
     data: Music[];
+    setModal: (modal: boolean) => void;
 }
 
 export function TableList(props: TableProps) {
@@ -15,7 +16,7 @@ export function TableList(props: TableProps) {
         window.open(link);
     }
     const dados: Data[] = data.map((item) => {
-        const { artist, album, title, link, preview } = item;
+        const { artist, album, title, preview } = item;
         const { name } = artist;
         return {
             title: (
@@ -24,19 +25,15 @@ export function TableList(props: TableProps) {
                 </button>
             ),
             artist: (
-                <Flex>
+                <Flex alignItems="center">
                     <img src={artist.picture_small} alt="" />
-                    <button onClick={() => openLink(link)}>
-                        <Text color="white">{name}</Text>
-                    </button>
+                    <Text color="white">{name}</Text>
                 </Flex>
             ),
             album: (
                 <Flex alignItems="center">
                     <img src={album.cover_small} alt="" />
-                    <button onClick={() => openLink(link)}>
-                        <Text color="white">{album.title}</Text>
-                    </button>
+                    <Text color="white">{album.title}</Text>
                 </Flex>
             ),
         };

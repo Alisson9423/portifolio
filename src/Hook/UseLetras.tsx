@@ -8,6 +8,7 @@ interface UseLetrasProviderProps {
 interface UseLetrasData {
     fetchSongs: (term: string) => void;
 
+    loader: boolean;
     music: Music[];
 }
 
@@ -15,6 +16,7 @@ interface Album {
     cover: string;
     title: string;
     cover_small: string;
+    cover_big: string;
     tracklist: string;
 }
 
@@ -42,15 +44,23 @@ const UseLetrasContext = createContext<UseLetrasData>({} as UseLetrasData);
 
 export function UseLetrasProvider(props: UseLetrasProviderProps) {
     const [music, setMusict] = useState<Music[]>([]);
+    const [loader, setLoader] = useState<boolean>(false);
     const { children } = props;
 
     async function fetchSongs(term: string) {
-        const { data } = await api.get<MusicData>(`suggest/${term}`);
-        setMusict(data.data);
+        setLoader(true);
+        try {
+            const { data } = await api.get<MusicData>(`suggest/${term}`);
+            setMusict(data.data);
+            setLoader(false);
+        } catch (error) {
+            console.log(error);
+            setLoader(false);
+        }
     }
 
     return (
-        <UseLetrasContext.Provider value={{ fetchSongs, music }}>
+        <UseLetrasContext.Provider value={{ fetchSongs, music, loader }}>
             {children}
         </UseLetrasContext.Provider>
     );
