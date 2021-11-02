@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState } from "react";
 import { api } from "../services";
+import axios from "axios";
 
 interface UseLetrasProviderProps {
     children: React.ReactChild | React.ReactChild[] | React.ReactNode;
@@ -7,9 +8,10 @@ interface UseLetrasProviderProps {
 
 interface UseLetrasData {
     fetchSongs: (term: string) => void;
+    getMoreSongs: (url: string) => void;
 
     loader: boolean;
-    music: Music[];
+    music?: MusicData;
 }
 
 interface Album {
@@ -38,12 +40,15 @@ export interface Music {
 
 interface MusicData {
     data: Music[];
+    total: number;
+    next: string;
+    prev: string;
 }
 
 const UseLetrasContext = createContext<UseLetrasData>({} as UseLetrasData);
 
 export function UseLetrasProvider(props: UseLetrasProviderProps) {
-    const [music, setMusict] = useState<Music[]>([]);
+    const [music, setMusict] = useState<MusicData>();
     const [loader, setLoader] = useState<boolean>(false);
     const { children } = props;
 
@@ -51,7 +56,27 @@ export function UseLetrasProvider(props: UseLetrasProviderProps) {
         setLoader(true);
         try {
             const { data } = await api.get<MusicData>(`suggest/${term}`);
-            setMusict(data.data);
+            setMusict(data);
+            setLoader(false);
+        } catch (error) {
+            console.log(error);
+            setLoader(false);
+        }
+    }
+
+    async function getMoreSongs(url: string) {
+        setLoader(true);
+        setMusict(undefined);
+        try {
+            const { data } = await axios.get<MusicData>(
+                `https://cors-anywhere.herokuapp.com/${url}`,
+                {
+                    headers: {
+                        origin: "x-requested-with",
+                    },
+                }
+            );
+            setMusict(data);
             setLoader(false);
         } catch (error) {
             console.log(error);
@@ -60,7 +85,9 @@ export function UseLetrasProvider(props: UseLetrasProviderProps) {
     }
 
     return (
-        <UseLetrasContext.Provider value={{ fetchSongs, music, loader }}>
+        <UseLetrasContext.Provider
+            value={{ fetchSongs, getMoreSongs, music, loader }}
+        >
             {children}
         </UseLetrasContext.Provider>
     );

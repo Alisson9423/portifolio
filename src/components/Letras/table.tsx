@@ -14,11 +14,8 @@ interface TableProps {
 export function TableList(props: TableProps) {
     const { data, activeTr, setPlayIndex } = props;
 
-    function openLink(link: string) {
-        window.open(link);
-    }
     const dados: Data[] = data.map((item, key) => {
-        const { artist, album, title, preview } = item;
+        const { artist, album, title } = item;
         const { name } = artist;
         return {
             title: (
