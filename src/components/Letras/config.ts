@@ -23,7 +23,7 @@ export interface MyFormValues {
 }
 
 export const initialValues: MyFormValues = {
-    search: "",
+    search: "Racionais",
 };
 
 export const validation = Yup.object().shape({

@@ -10,10 +10,12 @@ interface AudioList {
 }
 interface PlayerProps {
     audioList: AudioList[];
+    setActiveTr: (index: number) => void;
+    playIndex: number;
 }
 
 export function Player(props: PlayerProps) {
-    const { audioList } = props;
+    const { audioList, setActiveTr, playIndex } = props;
     // const cunstomLocale = {
     //     playModeText: {
     //         order: "Order",
@@ -50,8 +52,14 @@ export function Player(props: PlayerProps) {
             glassBg
             audioLists={audioList}
             autoPlay={false}
-            theme="light"
-            className="color"
+            theme="dark"
+            playIndex={playIndex}
+            playModeShowTime={1000}
+            showLyric={true}
+            mode="full"
+            onPlayIndexChange={(index: number) => {
+                setActiveTr(index);
+            }}
         ></ReactJkMusicPlayer>
     );
 }

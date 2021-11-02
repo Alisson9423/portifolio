@@ -23,9 +23,11 @@ export function Letras() {
     const { fetchSongs, music, loader } = useLetras();
     const [modal, setModal] = useState<boolean>(false);
     const [audioList, setAudioList] = useState<AudioList[]>([]);
+    const [activeTr, setActiveTr] = useState<number>(0);
+    const [playIndex, setPlayIndex] = useState<number>(0);
 
     useEffect(() => {
-        const audioList = music.map((item) => {
+        const audioList: AudioList[] = music.map((item) => {
             return {
                 name: item.title,
                 singer: item.artist.name,
@@ -47,6 +49,7 @@ export function Letras() {
                     onSubmit={(values, actions) => {
                         const { search } = values;
                         setAudioList([]);
+                        setActiveTr(0);
 
                         fetchSongs(search.trim());
                     }}
@@ -70,7 +73,12 @@ export function Letras() {
             </HeaderStyles>
 
             {music.length && loader === false ? (
-                <TableList data={music} setModal={setModal} />
+                <TableList
+                    data={music}
+                    setPlayIndex={setPlayIndex}
+                    setModal={setModal}
+                    activeTr={activeTr}
+                />
             ) : loader ? (
                 <Loader height={300} width={300} />
             ) : null}
@@ -80,7 +88,13 @@ export function Letras() {
                 className="prev-and-next-container"
             ></div>
 
-            {audioList.length && <Player audioList={audioList} />}
+            {audioList.length && (
+                <Player
+                    audioList={audioList}
+                    setActiveTr={setActiveTr}
+                    playIndex={playIndex}
+                />
+            )}
             <Modal component={Letra} active={modal} />
         </Container>
     );

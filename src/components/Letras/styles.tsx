@@ -127,8 +127,22 @@ export const Form = styled(Formik)`
 
 export const TableStyles = styled(Box)`
     .table {
+        .header {
+            padding-top: 32px;
+        }
         .tr {
+            &.header {
+                .th {
+                    color: ${({ theme }) => theme.colors.white};
+                    font-size: 1rem;
+                    font-weight: 400;
+                }
+            }
+
             &.body {
+                &.active {
+                    background-color: #40444b;
+                }
                 .td {
                     img {
                         border-radius: 50%;

@@ -7,20 +7,22 @@ import { TableStyles } from "./styles";
 interface TableProps {
     data: Music[];
     setModal: (modal: boolean) => void;
+    setPlayIndex: (index: number) => void;
+    activeTr: number;
 }
 
 export function TableList(props: TableProps) {
-    const { data } = props;
+    const { data, activeTr, setPlayIndex } = props;
 
     function openLink(link: string) {
         window.open(link);
     }
-    const dados: Data[] = data.map((item) => {
+    const dados: Data[] = data.map((item, key) => {
         const { artist, album, title, preview } = item;
         const { name } = artist;
         return {
             title: (
-                <button onClick={() => openLink(preview)}>
+                <button onClick={() => setPlayIndex(key)}>
                     <Text color="white">{title}</Text>
                 </button>
             ),
@@ -36,6 +38,8 @@ export function TableList(props: TableProps) {
                     <Text color="white">{album.title}</Text>
                 </Flex>
             ),
+
+            styles: key === activeTr ? "active" : "",
         };
     });
 
