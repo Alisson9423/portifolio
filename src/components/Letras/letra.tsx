@@ -1,24 +1,46 @@
-import { Heading } from "aplication-yetz";
+import { Heading, Text } from "aplication-yetz";
+import { Loader } from "../Loader";
 import { ModalStyles } from "./styles";
 
 import closeImg from "../../assets/img/close.svg";
 
-export function Letra() {
+interface lyricsProps {
+    rest: {
+        lyric: string;
+        // title: string;
+        artist: string;
+        errorLyric: boolean;
+        onClose: () => void;
+    };
+}
+
+export function Letra(props: lyricsProps) {
+    const { rest } = props;
     return (
         <ModalStyles>
             <div className="container-header">
-                <Heading as="h1" color="white">
-                    Letra
+                <Heading as="h1" color="white" fontSize="mdl">
+                    {rest.artist}
                 </Heading>
-                <img src={closeImg} alt="" />
+                <button onClick={() => rest.onClose()}>
+                    <img src={closeImg} alt="" />
+                </button>
             </div>
 
             <div className="content-body">
-                lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Quisquam, quidem. Lorem ipsum dolor sit amet, consectetur
-                adipisicing elit. At corporis quia ipsam odio! Itaque, suscipit
-                laborum. Autem saepe numquam veritatis, obcaecati ipsum minus,
-                earum voluptatibus explicabo id odio laudantium molestiae.
+                {!rest.lyric ? (
+                    rest.errorLyric ? (
+                        <Text>Algo deu errado :( </Text>
+                    ) : (
+                        <Loader height={300} width={300} item={1} />
+                    )
+                ) : (
+                    <div
+                        dangerouslySetInnerHTML={{
+                            __html: rest.lyric.replace(/(\r\n|\r|\n)/g, "<br>"),
+                        }}
+                    ></div>
+                )}
             </div>
         </ModalStyles>
     );

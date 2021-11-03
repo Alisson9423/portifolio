@@ -1,4 +1,5 @@
 import { Table, Flex, Text } from "aplication-yetz";
+import { FiBook } from "react-icons/fi";
 import { Music } from "../../Hook/UseLetras";
 import { conlumn } from "./config";
 import { Data } from "./types";
@@ -6,13 +7,13 @@ import { TableStyles } from "./styles";
 
 interface TableProps {
     data: Music[];
-    setModal: (modal: boolean) => void;
     setPlayIndex: (index: number) => void;
+    getLyric: (name: string, artist: string) => void;
     activeTr: number;
 }
 
 export function TableList(props: TableProps) {
-    const { data, activeTr, setPlayIndex } = props;
+    const { data, activeTr, setPlayIndex, getLyric } = props;
 
     const dados: Data[] = data.map((item, key) => {
         const { artist, album, title } = item;
@@ -34,6 +35,12 @@ export function TableList(props: TableProps) {
                     <img src={album.cover_small} alt="" />
                     <Text color="white">{album.title}</Text>
                 </Flex>
+            ),
+
+            lyric: (
+                <button onClick={() => getLyric(title, name)}>
+                    <FiBook color="white" size={30} />
+                </button>
             ),
 
             styles: key === activeTr ? "active" : "",

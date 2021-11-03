@@ -2,22 +2,50 @@ import { useEffect, useState } from "react";
 
 import { useLetras } from "../../Hook/UseLetras";
 import { Header } from "./header";
+import { TableList } from "./table";
 import { Player } from "../Player";
 import { Letra } from "./letra";
 import { Loader } from "../Loader";
 import { Modal } from "../Modal";
 import { AudioList } from "./types";
 
-import { TableList } from "./table";
 import { Container } from "./styles";
 
 export function Letras() {
-    const { getMoreSongs, music, loader } = useLetras();
+    const {
+        fetchLyrics,
+        lyric,
+        errorLyric,
+        setErrorLyric,
+
+        music,
+        getMoreSongs,
+        loader,
+    } = useLetras();
     const [modal, setModal] = useState<boolean>(false);
     const [audioList, setAudioList] = useState<AudioList[]>([]);
     const [activeTr, setActiveTr] = useState<number>(0);
-
     const [playIndex, setPlayIndex] = useState<number>(0);
+    const [artist, setArtist] = useState<string>("");
+
+    const config = {
+        lyric,
+        artist,
+        errorLyric,
+        onClose: () => handleClose(),
+    };
+
+    function handleClose() {
+        setModal(false);
+        setErrorLyric(false);
+        setArtist("");
+    }
+
+    function getLyric(name: string, artist: string) {
+        setModal(true);
+        setArtist(name);
+        fetchLyrics(name, artist);
+    }
 
     useEffect(() => {
         const audioList: AudioList[] = music?.data
@@ -45,7 +73,7 @@ export function Letras() {
                 <TableList
                     data={music.data}
                     setPlayIndex={setPlayIndex}
-                    setModal={setModal}
+                    getLyric={getLyric}
                     activeTr={activeTr}
                 />
             ) : loader ? (
@@ -86,9 +114,10 @@ export function Letras() {
                     audioList={audioList}
                     setActiveTr={setActiveTr}
                     playIndex={playIndex}
+                    setPlayIndex={setPlayIndex}
                 />
             )}
-            <Modal component={Letra} active={modal} />
+            <Modal component={Letra} active={modal} rest={config} />
         </Container>
     );
 }

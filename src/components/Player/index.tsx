@@ -11,53 +11,29 @@ interface AudioList {
 interface PlayerProps {
     audioList: AudioList[];
     setActiveTr: (index: number) => void;
+    setPlayIndex: (index: number) => void;
     playIndex: number;
 }
 
 export function Player(props: PlayerProps) {
-    const { audioList, setActiveTr, playIndex } = props;
-    // const cunstomLocale = {
-    //     playModeText: {
-    //         order: "Order",
-    //         orderLoop: "Order",
-    //         singleLoop: "",
-    //         shufflePlay: "",
-    //     },
-    //     openText: "",
-    //     closeText: "",
-    //     emptyText: "",
-    //     clickToPlayText: "",
-    //     clickToPauseText: "",
-    //     nextTrackText: "",
-    //     previousTrackText: "",
-    //     reloadText: "",
-    //     volumeText: "",
-    //     playListsText: "",
-    //     toggleLyricText: "",
-    //     toggleMiniModeText: "",
-    //     destroyText: "",
-    //     downloadText: "",
-    //     lightThemeText: "",
-    //     darkThemeText: "",
-    //     switchThemeText: "",
-    //     removeAudioListsText: "",
-    //     controllerTitle: "",
-    //     emptyLyricText: "",
-    //     clickToDeleteText: (name) => ``,
-    //     audioTitle: "",
-    // };
+    const { audioList, setActiveTr, playIndex, setPlayIndex } = props;
 
     return (
         <ReactJkMusicPlayer
             glassBg
             audioLists={audioList}
             autoPlay={false}
+            onAudioEnded={(audio) => {
+                if (playIndex < 15) {
+                    setPlayIndex(playIndex + 1);
+                }
+            }}
             theme="dark"
             playIndex={playIndex}
             playModeShowTime={1000}
-            showLyric={true}
             mode="full"
             onPlayIndexChange={(index: number) => {
+                setPlayIndex(index);
                 setActiveTr(index);
             }}
         ></ReactJkMusicPlayer>

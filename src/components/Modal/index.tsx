@@ -2,12 +2,12 @@ import { ModalProps } from "./types";
 import { Container } from "./styles";
 
 export function Modal(props: ModalProps) {
-    const { component: Component, active } = props;
+    const { component: Component, active, ...rest } = props;
 
     return (
         <Container active={active}>
             <div className="container-body">
-                <Component />
+                <Component {...rest} />
             </div>
         </Container>
     );

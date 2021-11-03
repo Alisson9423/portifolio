@@ -16,6 +16,13 @@ export const conlumn: Column<Data>[] = [
         Header: "Album",
         accessor: "album",
     },
+
+    {
+        Header: "Letra",
+        accessor: "lyric",
+        width: 30,
+        maxWidth: 30,
+    },
 ];
 
 export interface MyFormValues {

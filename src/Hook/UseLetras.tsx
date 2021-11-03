@@ -8,10 +8,15 @@ interface UseLetrasProviderProps {
 
 interface UseLetrasData {
     fetchSongs: (term: string) => void;
+    fetchLyrics: (name: string, artist: string) => void;
     getMoreSongs: (url: string) => void;
 
     loader: boolean;
     music?: MusicData;
+
+    lyric: string;
+    setErrorLyric: (error: boolean) => void;
+    errorLyric: boolean;
 }
 
 interface Album {
@@ -45,11 +50,19 @@ interface MusicData {
     prev: string;
 }
 
+interface lyricsData {
+    lyrics: string;
+}
+
 const UseLetrasContext = createContext<UseLetrasData>({} as UseLetrasData);
 
 export function UseLetrasProvider(props: UseLetrasProviderProps) {
     const [music, setMusict] = useState<MusicData>();
     const [loader, setLoader] = useState<boolean>(false);
+
+    const [lyric, setLyric] = useState<string>("");
+    const [errorLyric, setErrorLyric] = useState<boolean>(false);
+
     const { children } = props;
 
     async function fetchSongs(term: string) {
@@ -61,6 +74,18 @@ export function UseLetrasProvider(props: UseLetrasProviderProps) {
         } catch (error) {
             console.log(error);
             setLoader(false);
+        }
+    }
+
+    async function fetchLyrics(name: string, artist: string) {
+        setLyric("");
+        try {
+            const { data } = await api.get<lyricsData>(`v1/${artist}/${name}`);
+            setLyric(data.lyrics);
+            setErrorLyric(false);
+        } catch (error) {
+            setErrorLyric(true);
+            console.log(error);
         }
     }
 
@@ -86,7 +111,17 @@ export function UseLetrasProvider(props: UseLetrasProviderProps) {
 
     return (
         <UseLetrasContext.Provider
-            value={{ fetchSongs, getMoreSongs, music, loader }}
+            value={{
+                fetchLyrics,
+                lyric,
+                errorLyric,
+                setErrorLyric,
+
+                fetchSongs,
+                getMoreSongs,
+                music,
+                loader,
+            }}
         >
             {children}
         </UseLetrasContext.Provider>
