@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { useLetras } from "../../Hook/UseLetras";
+import { useMusic } from "../../Hook/UseMusic";
 import { Header } from "./header";
 import { TableList } from "./table";
 import { Player } from "../Player";
@@ -21,7 +21,7 @@ export function Letras() {
         music,
         getMoreSongs,
         loader,
-    } = useLetras();
+    } = useMusic();
     const [modal, setModal] = useState<boolean>(false);
     const [audioList, setAudioList] = useState<AudioList[]>([]);
     const [activeTr, setActiveTr] = useState<number>(0);

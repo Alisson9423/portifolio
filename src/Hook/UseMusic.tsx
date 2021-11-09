@@ -2,11 +2,11 @@ import React, { createContext, useContext, useState } from "react";
 import { api } from "../services";
 import axios from "axios";
 
-interface UseLetrasProviderProps {
+interface UseMusicProviderProps {
     children: React.ReactChild | React.ReactChild[] | React.ReactNode;
 }
 
-interface UseLetrasData {
+interface UseMusicData {
     fetchSongs: (term: string) => void;
     fetchLyrics: (name: string, artist: string) => void;
     getMoreSongs: (url: string) => void;
@@ -54,9 +54,9 @@ interface lyricsData {
     lyrics: string;
 }
 
-const UseLetrasContext = createContext<UseLetrasData>({} as UseLetrasData);
+const UseMusicContext = createContext<UseMusicData>({} as UseMusicData);
 
-export function UseLetrasProvider(props: UseLetrasProviderProps) {
+export function UseMusicProvider(props: UseMusicProviderProps) {
     const [music, setMusict] = useState<MusicData>();
     const [loader, setLoader] = useState<boolean>(false);
 
@@ -110,7 +110,7 @@ export function UseLetrasProvider(props: UseLetrasProviderProps) {
     }
 
     return (
-        <UseLetrasContext.Provider
+        <UseMusicContext.Provider
             value={{
                 fetchLyrics,
                 lyric,
@@ -124,11 +124,11 @@ export function UseLetrasProvider(props: UseLetrasProviderProps) {
             }}
         >
             {children}
-        </UseLetrasContext.Provider>
+        </UseMusicContext.Provider>
     );
 }
 
-export function useLetras() {
-    const context = useContext(UseLetrasContext);
+export function useMusic() {
+    const context = useContext(UseMusicContext);
     return context;
 }

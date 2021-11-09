@@ -24,8 +24,10 @@ export function Player(props: PlayerProps) {
             audioLists={audioList}
             autoPlay={false}
             onAudioEnded={(audio) => {
-                if (playIndex < 15) {
+                if (playIndex < 14) {
                     setPlayIndex(playIndex + 1);
+                } else {
+                    setPlayIndex(0);
                 }
             }}
             theme="dark"

@@ -1,6 +1,6 @@
 import { Table, Flex, Text } from "aplication-yetz";
 import { FiBook } from "react-icons/fi";
-import { Music } from "../../Hook/UseLetras";
+import { Music } from "../../Hook/UseMusic";
 import { conlumn } from "./config";
 import { Data } from "./types";
 import { TableStyles } from "./styles";

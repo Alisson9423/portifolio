@@ -1,4 +1,4 @@
-import { useLetras } from "../../Hook/UseLetras";
+import { useMusic } from "../../Hook/UseMusic";
 import { initialValues, validation, MyFormValues } from "./config";
 import { Formik, Field, ErrorMessage, FormikProps } from "formik";
 import { AudioList } from "./types";
@@ -12,7 +12,7 @@ interface HeaderProps {
 
 export function Header(props: HeaderProps) {
     const { setActiveTr, setAudioList, setPlayIndex } = props;
-    const { fetchSongs } = useLetras();
+    const { fetchSongs } = useMusic();
 
     return (
         <HeaderStyles>
