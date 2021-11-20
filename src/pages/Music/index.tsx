@@ -1,10 +1,10 @@
 import { UseMusicProvider } from "../../Hook/UseMusic";
-import { Letras } from "../../components/Letras";
+import { Music } from "../../components/Letras";
 
-export function Music() {
+export function PageMusic() {
     return (
         <UseMusicProvider>
-            <Letras />
+            <Music />
         </UseMusicProvider>
     );
 }

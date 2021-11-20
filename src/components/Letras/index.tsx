@@ -11,7 +11,7 @@ import { AudioList } from "./types";
 
 import { Container } from "./styles";
 
-export function Letras() {
+export function Music() {
     const {
         fetchLyrics,
         lyric,
@@ -109,14 +109,14 @@ export function Letras() {
                 )}
             </div>
 
-            {audioList.length && (
+            {audioList.length ? (
                 <Player
                     audioList={audioList}
                     setActiveTr={setActiveTr}
                     playIndex={playIndex}
                     setPlayIndex={setPlayIndex}
                 />
-            )}
+            ) : null}
             <Modal component={Letra} active={modal} rest={config} />
         </Container>
     );

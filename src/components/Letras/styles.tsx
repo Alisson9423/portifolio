@@ -3,7 +3,9 @@ import styled from "styled-components";
 import { Form as Formik } from "formik";
 
 export const Container = styled.div`
+    min-height: 100vh;
     padding-bottom: 100px;
+    background-color: #10161b;
     li {
         list-style: none;
     }
