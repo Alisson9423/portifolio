@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Button } from "alisson-application";
 
 import { useMusic } from "../../Hook/UseMusic";
 import { Header } from "./header";
@@ -85,7 +86,7 @@ export function Music() {
                 className="prev-and-next-container"
             >
                 {music?.prev && (
-                    <button
+                    <Button
                         onClick={() => {
                             getMoreSongs(music.prev);
                             setPlayIndex(0);
@@ -93,11 +94,11 @@ export function Music() {
                         className="btn"
                     >
                         Anteriores
-                    </button>
+                    </Button>
                 )}
 
                 {music?.next && (
-                    <button
+                    <Button
                         onClick={() => {
                             getMoreSongs(music.next);
                             setPlayIndex(0);
@@ -105,7 +106,7 @@ export function Music() {
                         className="btn"
                     >
                         Proximas
-                    </button>
+                    </Button>
                 )}
             </div>
 

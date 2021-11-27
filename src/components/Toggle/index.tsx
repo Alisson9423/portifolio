@@ -1,4 +1,4 @@
-import { Text, Box } from "aplication-yetz";
+import { Text, Box } from "alisson-application";
 import { ToggleProps } from "./types";
 import { Container } from "./styles";
 

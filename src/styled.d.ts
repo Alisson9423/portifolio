@@ -1,6 +1,6 @@
 import "styled-components";
-import { YetzTheme } from "aplication-yetz";
+import { Theme } from "alisson-application";
 
 declare module "styled-components" {
-    export interface DefaultTheme extends YetzTheme {}
+    export interface DefaultTheme extends Theme {}
 }

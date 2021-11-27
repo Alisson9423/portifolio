@@ -1,4 +1,4 @@
-import { Table, Flex, Text } from "aplication-yetz";
+import { Table, Flex, Text } from "alisson-application";
 import { FiBook } from "react-icons/fi";
 import { Music } from "../../Hook/UseMusic";
 import { conlumn } from "./config";

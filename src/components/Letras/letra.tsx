@@ -1,4 +1,4 @@
-import { Heading, Text } from "aplication-yetz";
+import { Text } from "alisson-application";
 import { Loader } from "../Loader";
 import { ModalStyles } from "./styles";
 
@@ -19,9 +19,9 @@ export function Letra(props: lyricsProps) {
     return (
         <ModalStyles>
             <div className="container-header">
-                <Heading as="h1" color="white" fontSize="mdl">
-                    {rest.artist}
-                </Heading>
+                <Text as="h1" color="white" fontSize="mdl">
+                    {rest.artist} asdasd
+                </Text>
                 <button onClick={() => rest.onClose()}>
                     <img src={closeImg} alt="" />
                 </button>

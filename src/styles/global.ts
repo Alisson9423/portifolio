@@ -26,7 +26,7 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     button{
-        background: ${({ theme }) => theme.colors.transparent};
+        background: transparent;
         cursor: pointer;
         border: none;
     }

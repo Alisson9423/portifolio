@@ -1,9 +1,10 @@
 {
     "name": "letras",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "private": true,
     "dependencies": {
         "@types/react-lottie": "^1.2.6",
+        "alisson-application": "^1.0.2",
         "aplication-yetz": "^1.0.82",
         "axios": "^0.23.0",
         "concurrently": "^6.3.0",
@@ -20,7 +21,7 @@
         "react-router-dom": "^5.2.1",
         "react-scripts": "4.0.3",
         "react-table": "^7.7.0",
-        "styled-components": "^5.3.1",
+        "styled-components": "^5.3.0",
         "web-vitals": "^1.0.1",
         "yup": "^0.32.11"
     },
@@ -34,7 +35,7 @@
         "@types/react-dom": "^17.0.0",
         "@types/react-router-dom": "^5.1.8",
         "@types/react-table": "^7.7.2",
-        "@types/styled-components": "^5.1.13",
+        "@types/styled-components": "^5.1.7",
         "react-app-rewire-less-modules": "1.1.0",
         "typescript": "^4.1.2"
     },

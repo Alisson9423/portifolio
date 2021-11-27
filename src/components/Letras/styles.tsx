@@ -1,4 +1,4 @@
-import { Flex, Box } from "aplication-yetz";
+import { Flex, Box } from "alisson-application";
 import styled from "styled-components";
 import { Form as Formik } from "formik";
 
@@ -10,11 +10,6 @@ export const Container = styled.div`
         list-style: none;
     }
     .btn {
-        background-color: #8d56fd;
-        border: 0;
-        border-radius: 10px;
-        color: #fff;
-        padding: 4px 10px;
     }
 
     .songs-container {
@@ -115,7 +110,7 @@ export const Form = styled(Formik)`
         position: absolute;
         top: 2px;
         right: 2px;
-        background-color: #8d56fd;
+        background-color: ${({ theme }) => theme.colors.primary};
         border: 0;
         border-radius: 50px;
         color: #fff;
@@ -166,7 +161,7 @@ export const ModalStyles = styled(Box)`
         align-items: center;
         justify-content: space-between;
         padding: 0px 20px;
-        background-color: ${({ theme }) => theme.colors.fundoBase};
+        background-color: ${({ theme }) => theme.colors.primary};
         border-radius: 5px 5px 0 0;
     }
 

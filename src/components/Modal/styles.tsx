@@ -125,7 +125,6 @@ export const Topo = styled.div`
             font-weight: 500;
             font-size: 15px;
             line-height: 18px;
-            color: ${(props) => props.theme.colors.gray300};
         }
     }
 `;
@@ -153,7 +152,6 @@ export const Erros = styled.div`
             font-weight: 500;
             font-size: 15px;
             line-height: 18px;
-            color: ${(props) => props.theme.colors.gray700};
         }
     }
 `;
