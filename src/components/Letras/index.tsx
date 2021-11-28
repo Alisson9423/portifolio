@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import { Button } from "alisson-application";
 
+import { Language } from "../../contexts/Localization";
+
 import { useMusic } from "../../Hook/UseMusic";
+import { useTranslation } from "../../contexts/Localization";
 import { Header } from "./header";
 import { TableList } from "./table";
 import { Player } from "../Player";
@@ -23,6 +26,9 @@ export function Music() {
         getMoreSongs,
         loader,
     } = useMusic();
+
+    const { t, currentLanguage, setLanguage } = useTranslation();
+
     const [modal, setModal] = useState<boolean>(false);
     const [audioList, setAudioList] = useState<AudioList[]>([]);
     const [activeTr, setActiveTr] = useState<number>(0);
@@ -62,6 +68,12 @@ export function Music() {
         setAudioList(audioList);
     }, [music]);
 
+    const lang: Language = {
+        locale: "en-US",
+        language: "English",
+        code: "en",
+    };
+
     return (
         <Container>
             <Header
@@ -70,6 +82,7 @@ export function Music() {
                 setPlayIndex={setPlayIndex}
             />
 
+            <Button onClick={() => setLanguage(lang)}>teste</Button>
             {music?.data.length && loader === false ? (
                 <TableList
                     data={music.data}

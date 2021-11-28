@@ -1,5 +1,5 @@
 import React, { createContext, useCallback, useEffect, useState } from "react";
-import { PTBR, languages, languageListKeys } from "../../config/languages";
+import { PTBR, languages } from "../../config/languages";
 import translations from "../../config/translation.json";
 import {
     ContextApi,
@@ -47,7 +47,6 @@ export const LanguageProvider: React.FC = ({ children }) => {
     useEffect(() => {
         const fetchInitialLocales = async () => {
             const codeFromStorage = getLanguageCodeFromLS();
-
             if (codeFromStorage !== PTBR.locale) {
                 const enLocale = languageMap.get(PTBR.locale);
                 const currentLocale = await fetchLocale(codeFromStorage);

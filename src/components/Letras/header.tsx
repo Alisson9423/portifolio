@@ -1,4 +1,5 @@
 import { useMusic } from "../../Hook/UseMusic";
+import { useTranslation } from "../../contexts/Localization";
 import { initialValues, validation, MyFormValues } from "./config";
 import { Formik, Field, ErrorMessage, FormikProps } from "formik";
 import { AudioList } from "./types";
@@ -13,10 +14,11 @@ interface HeaderProps {
 export function Header(props: HeaderProps) {
     const { setActiveTr, setAudioList, setPlayIndex } = props;
     const { fetchSongs } = useMusic();
+    const { t } = useTranslation();
 
     return (
         <HeaderStyles>
-            <h1>Busca letras</h1>
+            <h1>{t("Busca letras")}</h1>
 
             <Formik
                 initialValues={initialValues}
@@ -36,12 +38,14 @@ export function Header(props: HeaderProps) {
                             <Field
                                 id="search"
                                 type="text"
-                                placeholder="Insira o nome do artista ou da música..."
+                                placeholder={t(
+                                    "Insira o nome do artista ou da música..."
+                                )}
                                 name="search"
                             />
                             <ErrorMessage component="span" name="search" />
 
-                            <button>Buscar</button>
+                            <button>{t("Buscar")}</button>
                         </Form>
                     );
                 }}
