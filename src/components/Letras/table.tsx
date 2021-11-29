@@ -1,7 +1,8 @@
 import { Table, Flex, Text } from "alisson-application";
+import { Column } from "react-table";
+import { useTranslation } from "../../contexts/Localization";
 import { FiBook } from "react-icons/fi";
 import { Music } from "../../Hook/UseMusic";
-import { conlumn } from "./config";
 import { Data } from "./types";
 import { TableStyles } from "./styles";
 
@@ -14,6 +15,30 @@ interface TableProps {
 
 export function TableList(props: TableProps) {
     const { data, activeTr, setPlayIndex, getLyric } = props;
+    const { t } = useTranslation();
+
+    const conlumn: Column<Data>[] = [
+        {
+            Header: t("Titulo"),
+            accessor: "title",
+        },
+        {
+            Header: t("Artista"),
+            accessor: "artist",
+        },
+
+        {
+            Header: t("Album"),
+            accessor: "album",
+        },
+
+        {
+            Header: t("Letra"),
+            accessor: "lyric",
+            width: 30,
+            maxWidth: 30,
+        },
+    ];
 
     const dados: Data[] = data.map((item, key) => {
         const { artist, album, title } = item;

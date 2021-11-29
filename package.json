@@ -3,6 +3,7 @@
     "version": "0.1.1",
     "private": true,
     "dependencies": {
+        "@mui/icons-material": "^5.2.0",
         "@types/react-lottie": "^1.2.6",
         "alisson-application": "^1.0.2",
         "aplication-yetz": "^1.0.82",
