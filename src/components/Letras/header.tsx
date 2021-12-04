@@ -19,37 +19,38 @@ export function Header(props: HeaderProps) {
     return (
         <HeaderStyles>
             <h1>{t("Busca letras")}</h1>
+            <div className="container">
+                <Formik
+                    initialValues={initialValues}
+                    validationSchema={validation}
+                    onSubmit={(values, actions) => {
+                        const { search } = values;
+                        setAudioList([]);
+                        setActiveTr(0);
+                        setPlayIndex(0);
 
-            <Formik
-                initialValues={initialValues}
-                validationSchema={validation}
-                onSubmit={(values, actions) => {
-                    const { search } = values;
-                    setAudioList([]);
-                    setActiveTr(0);
-                    setPlayIndex(0);
+                        fetchSongs(search.trim());
+                    }}
+                >
+                    {(props: FormikProps<MyFormValues>) => {
+                        return (
+                            <Form id="form">
+                                <Field
+                                    id="search"
+                                    type="text"
+                                    placeholder={t(
+                                        "Insira o nome do artista ou da música..."
+                                    )}
+                                    name="search"
+                                />
+                                <ErrorMessage component="span" name="search" />
 
-                    fetchSongs(search.trim());
-                }}
-            >
-                {(props: FormikProps<MyFormValues>) => {
-                    return (
-                        <Form id="form">
-                            <Field
-                                id="search"
-                                type="text"
-                                placeholder={t(
-                                    "Insira o nome do artista ou da música..."
-                                )}
-                                name="search"
-                            />
-                            <ErrorMessage component="span" name="search" />
-
-                            <button>{t("Buscar")}</button>
-                        </Form>
-                    );
-                }}
-            </Formik>
+                                <button>{t("Buscar")}</button>
+                            </Form>
+                        );
+                    }}
+                </Formik>
+            </div>
         </HeaderStyles>
     );
 }

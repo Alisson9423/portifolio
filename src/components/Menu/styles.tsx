@@ -8,4 +8,5 @@ export const Container = styled.div`
     width: 40px;
     padding-left: 12px;
     border-radius: 50%;
+    z-index: 99;
 `;

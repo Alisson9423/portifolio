@@ -99,6 +99,7 @@ export const Form = styled(Formik)`
     position: relative;
     width: 500px;
     max-width: 100%;
+    margin: 0 auto;
     input {
         border: 0;
         border-radius: 50px;
@@ -126,6 +127,12 @@ export const Form = styled(Formik)`
 
 export const TableStyles = styled(Box)`
     .table {
+        button {
+            &.btn {
+                display: block;
+                margin: 0 auto;
+            }
+        }
         .header {
             padding-top: 32px;
         }
@@ -135,6 +142,9 @@ export const TableStyles = styled(Box)`
                     color: ${({ theme }) => theme.colors.white};
                     font-size: 1rem;
                     font-weight: 400;
+                    &:nth-child(4) {
+                        text-align: center;
+                    }
                 }
             }
 
@@ -149,7 +159,17 @@ export const TableStyles = styled(Box)`
                     }
                 }
             }
+
+            p {
+                &.title {
+                    width: 220px;
+                    text-align: left;
+                }
+            }
         }
+    }
+
+    @media (max-width: 1024px) {
     }
 `;
 
@@ -205,6 +225,12 @@ export const ModalStyles = styled(Box)`
 
         &::-webkit-scrollbar-track {
             background-color: rgba(255, 255, 255, 0.1);
+        }
+    }
+
+    @media (max-width: 560px) {
+        h1 {
+            width: 250px;
         }
     }
 `;

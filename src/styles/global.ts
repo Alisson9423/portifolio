@@ -42,4 +42,22 @@ export const GlobalStyle = createGlobalStyle`
             justify-content: center;
         }
     }
+
+    .container{
+        width: 1110px;
+        margin: 0 auto;
+    }
+
+    .react-jinke-music-player{
+        &.react-draggable{
+            top: 3.8% !important;
+            left: 5% !important;
+        }
+    }
+
+    @media (max-width: 1280PX) {
+        .container{
+            width: 90%;
+        }
+    }
 `;

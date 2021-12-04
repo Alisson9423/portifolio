@@ -73,12 +73,14 @@ export function Music() {
                 setPlayIndex={setPlayIndex}
             />
             {music?.data.length && loader === false ? (
-                <TableList
-                    data={music.data}
-                    setPlayIndex={setPlayIndex}
-                    getLyric={getLyric}
-                    activeTr={activeTr}
-                />
+                <div className="container">
+                    <TableList
+                        data={music.data}
+                        setPlayIndex={setPlayIndex}
+                        getLyric={getLyric}
+                        activeTr={activeTr}
+                    />
+                </div>
             ) : loader ? (
                 <Loader height={300} width={300} />
             ) : null}

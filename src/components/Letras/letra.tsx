@@ -21,7 +21,7 @@ export function Letra(props: lyricsProps) {
     return (
         <ModalStyles>
             <div className="container-header">
-                <Text as="h1" color="white" fontSize="mdl">
+                <Text as="h1" color="white" ellipsis={true} fontSize="mdl">
                     {rest.artist}
                 </Text>
                 <button onClick={() => rest.onClose()}></button>

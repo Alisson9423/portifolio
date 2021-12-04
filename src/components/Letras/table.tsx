@@ -16,27 +16,32 @@ interface TableProps {
 export function TableList(props: TableProps) {
     const { data, activeTr, setPlayIndex, getLyric } = props;
     const { t } = useTranslation();
+    const width = window.screen.width;
 
     const conlumn: Column<Data>[] = [
         {
             Header: t("Titulo"),
             accessor: "title",
+            width: 215,
+            maxWidth: 215,
         },
         {
             Header: t("Artista"),
             accessor: "artist",
+            width: 300,
+            maxWidth: 300,
         },
 
         {
             Header: t("Album"),
             accessor: "album",
+            width: 480,
+            maxWidth: 480,
         },
 
         {
             Header: t("Letra"),
             accessor: "lyric",
-            width: 30,
-            maxWidth: 30,
         },
     ];
 
@@ -46,24 +51,35 @@ export function TableList(props: TableProps) {
         return {
             title: (
                 <button onClick={() => setPlayIndex(key)}>
-                    <Text color="white">{title}</Text>
+                    <Text
+                        as="p"
+                        className="title"
+                        ellipsis={true}
+                        color="white"
+                    >
+                        {title}
+                    </Text>
                 </button>
             ),
             artist: (
                 <Flex alignItems="center">
                     <img src={artist.picture_small} alt="" />
-                    <Text color="white">{name}</Text>
+                    <Text as="p" ellipsis={true} color="white">
+                        {name}
+                    </Text>
                 </Flex>
             ),
             album: (
                 <Flex alignItems="center">
                     <img src={album.cover_small} alt="" />
-                    <Text color="white">{album.title}</Text>
+                    <Text as="p" ellipsis={true} color="white">
+                        {album.title}
+                    </Text>
                 </Flex>
             ),
 
             lyric: (
-                <button onClick={() => getLyric(title, name)}>
+                <button className="btn" onClick={() => getLyric(title, name)}>
                     <FiBook color="white" size={30} />
                 </button>
             ),
@@ -73,7 +89,7 @@ export function TableList(props: TableProps) {
     });
 
     return (
-        <TableStyles width="1200px" m="0 auto">
+        <TableStyles>
             <Table data={dados} columns={conlumn} />
         </TableStyles>
     );
