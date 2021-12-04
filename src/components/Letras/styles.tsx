@@ -1,11 +1,12 @@
 import { Flex, Box } from "alisson-application";
+import closeImg from "../../assets/img/close.svg";
 import styled from "styled-components";
 import { Form as Formik } from "formik";
 
 export const Container = styled.div`
     min-height: 100vh;
     padding-bottom: 100px;
-    background-color: #10161b;
+    background-color: ${({ theme }) => theme.colors.primary};
     li {
         list-style: none;
     }
@@ -18,7 +19,7 @@ export const Container = styled.div`
         margin: 30px auto;
         max-width: 100%;
         width: 500px;
-        background-color: #10161b;
+        background-color: ${({ theme }) => theme.colors.primary};
     }
 
     .song {
@@ -43,18 +44,18 @@ export const Container = styled.div`
     }
 
     .warning-message {
-        color: #ea2234;
+        color: ${({ theme }) => theme.colors.warning};
         text-align: center;
     }
 
     .song-artist {
-        color: white;
+        color: ${({ theme }) => theme.colors.white};
         opacity: 0.4;
         max-width: 400px;
     }
 
     .lyrics-container {
-        color: white;
+        color: ${({ theme }) => theme.colors.white};
         opacity: 0.4;
     }
 
@@ -69,7 +70,7 @@ export const HeaderStyles = styled(Flex)`
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
-    color: #fff;
+    color: ${({ theme }) => theme.colors.white};
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -110,10 +111,10 @@ export const Form = styled(Formik)`
         position: absolute;
         top: 2px;
         right: 2px;
-        background-color: ${({ theme }) => theme.colors.primary};
+        background-color: ${({ theme }) => theme.colors.secondary};
         border: 0;
         border-radius: 50px;
-        color: #fff;
+        color: ${({ theme }) => theme.colors.white};
         font-size: 16px;
         padding: 13px 30px;
         cursor: pointer;
@@ -139,7 +140,7 @@ export const TableStyles = styled(Box)`
 
             &.body {
                 &.active {
-                    background-color: #40444b;
+                    background-color: ${({ theme }) => theme.colors.secondary};
                 }
                 .td {
                     img {
@@ -155,6 +156,20 @@ export const TableStyles = styled(Box)`
 export const ModalStyles = styled(Box)`
     width: 600px;
     border-radius: 5px;
+
+    button {
+        width: 33px;
+        height: 33px;
+        &:before {
+            content: "";
+            display: block;
+            width: 100%;
+            height: 100%;
+            -webkit-mask: url(${closeImg});
+            background-color: ${({ theme }) => theme.colors.white};
+        }
+    }
+
     .container-header {
         height: 100px;
         display: flex;

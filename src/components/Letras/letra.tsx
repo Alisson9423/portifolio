@@ -24,9 +24,7 @@ export function Letra(props: lyricsProps) {
                 <Text as="h1" color="white" fontSize="mdl">
                     {rest.artist}
                 </Text>
-                <button onClick={() => rest.onClose()}>
-                    <img src={closeImg} alt="" />
-                </button>
+                <button onClick={() => rest.onClose()}></button>
             </div>
 
             <div className="content-body">

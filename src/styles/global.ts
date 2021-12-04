@@ -30,4 +30,16 @@ export const GlobalStyle = createGlobalStyle`
         cursor: pointer;
         border: none;
     }
+
+    .MuiPaper-root{
+        .theme {
+            position: absolute;
+            bottom: 5%;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
 `;
