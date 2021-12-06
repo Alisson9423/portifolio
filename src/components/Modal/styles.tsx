@@ -7,7 +7,7 @@ export interface ModalProps {
 const active = css`
     background: rgba(0, 0, 0, 0.4);
     pointer-events: all;
-    z-index: 99;
+    z-index: 9999;
     transition: all 0.5s;
     .container-body {
         top: 50% !important;

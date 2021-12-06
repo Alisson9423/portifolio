@@ -5,7 +5,7 @@
     "dependencies": {
         "@mui/icons-material": "^5.2.0",
         "@types/react-lottie": "^1.2.6",
-        "alisson-application": "^1.0.6",
+        "alisson-application": "^1.0.7",
         "aplication-yetz": "^1.0.82",
         "axios": "^0.23.0",
         "concurrently": "^6.3.0",
@@ -16,6 +16,7 @@
         "node-sass": "^6.0.1",
         "react": "^17.0.2",
         "react-dom": "^17.0.2",
+        "react-fast-marquee": "^1.2.1",
         "react-icons": "^4.3.1",
         "react-jinke-music-player": "^4.24.2",
         "react-lottie": "^1.2.3",

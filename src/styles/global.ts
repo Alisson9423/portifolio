@@ -11,6 +11,9 @@ export const GlobalStyle = createGlobalStyle`
     #root{
         overflow-x: hidden;
     }
+    svg{
+        pointer-events: none;
+    }
 
     *, 
     *:after,

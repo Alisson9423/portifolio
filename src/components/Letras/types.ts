@@ -3,6 +3,7 @@ export interface Data {
     title: string | React.ReactChild | React.ReactChild[] | React.ReactNode;
     album: string | React.ReactChild | React.ReactChild[] | React.ReactNode;
     lyric: string | React.ReactChild | React.ReactChild[] | React.ReactNode;
+    onClick?: () => void;
 }
 
 export interface AudioList {

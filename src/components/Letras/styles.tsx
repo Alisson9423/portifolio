@@ -149,6 +149,7 @@ export const TableStyles = styled(Box)`
             }
 
             &.body {
+                cursor: pointer;
                 &.active {
                     background-color: ${({ theme }) => theme.colors.secondary};
                 }
@@ -162,7 +163,7 @@ export const TableStyles = styled(Box)`
 
             p {
                 &.title {
-                    width: 220px;
+                    /* width: 200px; */
                     text-align: left;
                 }
             }
@@ -170,6 +171,18 @@ export const TableStyles = styled(Box)`
     }
 
     @media (max-width: 1024px) {
+        .table {
+            .tr {
+                button {
+                    width: 100%;
+                    p {
+                        &.title {
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+        }
     }
 `;
 

@@ -1,9 +1,11 @@
 import { Table, Flex, Text } from "alisson-application";
+import Marquee from "react-fast-marquee";
 import { Column } from "react-table";
 import { useTranslation } from "../../contexts/Localization";
-import { FiBook } from "react-icons/fi";
 import { Music } from "../../Hook/UseMusic";
+import { FiBook } from "react-icons/fi";
 import { Data } from "./types";
+import { useTheme } from "../../contexts/ThemeContext";
 import { TableStyles } from "./styles";
 
 interface TableProps {
@@ -16,27 +18,28 @@ interface TableProps {
 export function TableList(props: TableProps) {
     const { data, activeTr, setPlayIndex, getLyric } = props;
     const { t } = useTranslation();
+    const { currentTheme } = useTheme();
     const width = window.screen.width;
 
     const conlumn: Column<Data>[] = [
         {
             Header: t("Titulo"),
             accessor: "title",
-            width: 215,
-            maxWidth: 215,
+            width: width < 480 ? 180 : 215,
+            maxWidth: width < 480 ? 180 : 215,
         },
         {
             Header: t("Artista"),
             accessor: "artist",
-            width: 300,
-            maxWidth: 300,
+            width: width < 480 ? 250 : 300,
+            maxWidth: width < 480 ? 250 : 300,
         },
 
         {
             Header: t("Album"),
             accessor: "album",
-            width: 480,
-            maxWidth: 480,
+            width: width < 480 ? 300 : 480,
+            maxWidth: width < 480 ? 300 : 480,
         },
 
         {
@@ -48,9 +51,21 @@ export function TableList(props: TableProps) {
     const dados: Data[] = data.map((item, key) => {
         const { artist, album, title } = item;
         const { name } = artist;
+
         return {
-            title: (
-                <button onClick={() => setPlayIndex(key)}>
+            title:
+                activeTr === key ? (
+                    <Text
+                        as="p"
+                        className="title"
+                        ellipsis={true}
+                        color="white"
+                    >
+                        <Marquee speed={40} gradient={false}>
+                            {title}
+                        </Marquee>
+                    </Text>
+                ) : (
                     <Text
                         as="p"
                         className="title"
@@ -59,31 +74,51 @@ export function TableList(props: TableProps) {
                     >
                         {title}
                     </Text>
-                </button>
-            ),
-            artist: (
-                <Flex alignItems="center">
-                    <img src={artist.picture_small} alt="" />
-                    <Text as="p" ellipsis={true} color="white">
-                        {name}
-                    </Text>
-                </Flex>
-            ),
-            album: (
-                <Flex alignItems="center">
-                    <img src={album.cover_small} alt="" />
-                    <Text as="p" ellipsis={true} color="white">
-                        {album.title}
-                    </Text>
-                </Flex>
-            ),
+                ),
+            artist:
+                activeTr === key ? (
+                    <Flex alignItems="center">
+                        <img src={artist.picture_small} alt="" />
+                        <Text as="p" ellipsis={true} color="white">
+                            <Marquee speed={40} gradient={false}>
+                                {name}
+                            </Marquee>
+                        </Text>
+                    </Flex>
+                ) : (
+                    <Flex alignItems="center">
+                        <img src={artist.picture_small} alt="" />
+                        <Text as="p" ellipsis={true} color="white">
+                            {name}
+                        </Text>
+                    </Flex>
+                ),
+            album:
+                activeTr === key ? (
+                    <Flex alignItems="center">
+                        <img src={album.cover_small} alt="" />
+                        <Text as="p" ellipsis={true} color="white">
+                            <Marquee speed={40} gradient={false}>
+                                {album.title}
+                            </Marquee>
+                        </Text>
+                    </Flex>
+                ) : (
+                    <Flex alignItems="center">
+                        <img src={album.cover_small} alt="" />
+                        <Text as="p" ellipsis={true} color="white">
+                            {album.title}
+                        </Text>
+                    </Flex>
+                ),
 
             lyric: (
                 <button className="btn" onClick={() => getLyric(title, name)}>
-                    <FiBook color="white" size={30} />
+                    <FiBook color={currentTheme.colors.white} size={30} />
                 </button>
             ),
 
+            onClick: () => setPlayIndex(key),
             styles: key === activeTr ? "active" : "",
         };
     });
