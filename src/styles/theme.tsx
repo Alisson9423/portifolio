@@ -8,11 +8,11 @@ export const fonts = {
 };
 
 // theme dark
-export const lightColorss = {
+export const darkColorss = {
     white: "#FFFFFF",
     primary: "#10161b",
     secondary: "#8d56fd",
-    primaryBright: "#F6D8AE",
+    primaryBright: "#EDF5FC",
     primaryDark: "#DA4167",
     failure: "#ED4B9E",
     success: "#31D0AA",
@@ -22,18 +22,11 @@ export const lightColorss = {
 // theme light
 export const lightColors = {
     white: "#000",
-    primary: "#F4FAFF",
+    primary: "#fff",
     secondary: "#8d56fd",
-    primaryBright: "#F6D8AE",
+    primaryBright: "#10161b",
     primaryDark: "#DA4167",
     failure: "#ED4B9E",
     success: "#31D0AA",
     warning: "#F4D35E",
 };
-
-/**
- * #C5D6D8
- * #B8C5D6
- * #EDF5FC
- * #8D99AE
- */

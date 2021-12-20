@@ -92,6 +92,7 @@ export const HeaderStyles = styled(Flex)`
 
     h1 {
         margin: 0 0 30px;
+        color: ${({ theme }) => theme.colors.primaryBright};
     }
 `;
 

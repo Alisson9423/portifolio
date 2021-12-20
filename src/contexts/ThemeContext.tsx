@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { ThemeProvider as SCThemeProvider } from "styled-components";
-import { lightColors } from "../styles/theme";
+import { lightColors, darkColorss } from "../styles/theme";
 import { light, dark, Theme } from "alisson-application";
 import { fonts } from "../styles/theme";
 
@@ -9,7 +9,8 @@ interface SCThemeProviderProps {
 }
 interface ThemeProviderProps {
     currentTheme: Theme;
-    light?: Theme;
+    lightTheme: () => void;
+    darkTheme: () => void;
     // dark?: Theme;
 }
 
@@ -18,17 +19,26 @@ const ThemeContext = React.createContext<ThemeProviderProps>(
 );
 
 const ThemeContextProvider = ({ children }: SCThemeProviderProps) => {
-    light.colors = { ...light.colors, ...lightColors };
+    const [currentTheme, setCurrentTheme] = useState<Theme>(dark);
+    dark.colors = { ...dark.colors, ...darkColorss };
 
-    const [currentTheme, setCurrentTheme] = useState<Theme>(light);
+    function lightTheme() {
+        light.colors = { ...light.colors, ...lightColors };
+        setCurrentTheme(light);
+    }
+
+    function darkTheme() {
+        dark.colors = { ...dark.colors, ...darkColorss };
+        setCurrentTheme(dark);
+    }
 
     useEffect(() => {
-        setCurrentTheme(light);
+        setCurrentTheme(dark);
     }, []);
 
     return (
-        <ThemeContext.Provider value={{ light, currentTheme }}>
-            <SCThemeProvider theme={light}>{children}</SCThemeProvider>
+        <ThemeContext.Provider value={{ lightTheme, darkTheme, currentTheme }}>
+            <SCThemeProvider theme={currentTheme}>{children}</SCThemeProvider>
         </ThemeContext.Provider>
     );
 };
