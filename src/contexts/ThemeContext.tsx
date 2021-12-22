@@ -1,8 +1,7 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { ThemeProvider as SCThemeProvider } from "styled-components";
 import { lightColors, darkColorss } from "../styles/theme";
 import { light, dark, Theme } from "alisson-application";
-import { fonts } from "../styles/theme";
 
 interface SCThemeProviderProps {
     children?: React.ReactChild | React.ReactChild[];
@@ -24,17 +23,15 @@ const ThemeContextProvider = ({ children }: SCThemeProviderProps) => {
 
     function lightTheme() {
         light.colors = { ...light.colors, ...lightColors };
+        light.isDark = false;
         setCurrentTheme(light);
     }
 
     function darkTheme() {
         dark.colors = { ...dark.colors, ...darkColorss };
+        dark.isDark = true;
         setCurrentTheme(dark);
     }
-
-    useEffect(() => {
-        setCurrentTheme(dark);
-    }, []);
 
     return (
         <ThemeContext.Provider value={{ lightTheme, darkTheme, currentTheme }}>

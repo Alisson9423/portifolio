@@ -21,7 +21,7 @@ export function Letra(props: lyricsProps) {
     return (
         <ModalStyles>
             <div className="container-header">
-                <Text as="h1" color="white" ellipsis={true} fontSize="mdl">
+                <Text as="h1" color="primary" ellipsis={true} fontSize="mdl">
                     {rest.artist}
                 </Text>
                 <button onClick={() => rest.onClose()}></button>
@@ -30,12 +30,13 @@ export function Letra(props: lyricsProps) {
             <div className="content-body">
                 {!rest.lyric ? (
                     rest.errorLyric ? (
-                        <Text>{t("Algo deu errado :(")}</Text>
+                        <Text color="white">{t("Algo deu errado :(")}</Text>
                     ) : (
                         <Loader height={300} width={300} item={1} />
                     )
                 ) : (
                     <div
+                        className="text-content"
                         dangerouslySetInnerHTML={{
                             __html: rest.lyric.replace(/(\r\n|\r|\n)/g, "<br>"),
                         }}

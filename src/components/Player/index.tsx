@@ -1,4 +1,5 @@
 import ReactJkMusicPlayer from "react-jinke-music-player";
+import { useTheme } from "../../contexts/ThemeContext";
 import "react-jinke-music-player/lib/styles/index.less";
 import "./theme.css";
 
@@ -17,7 +18,7 @@ interface PlayerProps {
 
 export function Player(props: PlayerProps) {
     const { audioList, setActiveTr, playIndex, setPlayIndex } = props;
-
+    const { currentTheme, lightTheme, darkTheme } = useTheme();
     return (
         <ReactJkMusicPlayer
             glassBg
@@ -30,10 +31,13 @@ export function Player(props: PlayerProps) {
                     setPlayIndex(0);
                 }
             }}
-            theme="dark"
+            theme={currentTheme.isDark ? "dark" : "light"}
             playIndex={playIndex}
             playModeShowTime={1000}
             mode="full"
+            onThemeChange={() => {
+                currentTheme.isDark ? lightTheme() : darkTheme();
+            }}
             onPlayIndexChange={(index: number) => {
                 setPlayIndex(index);
                 setActiveTr(index);

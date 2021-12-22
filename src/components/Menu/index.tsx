@@ -2,6 +2,7 @@ import * as React from "react";
 import { Text } from "alisson-application";
 import { useTranslation } from "../../contexts/Localization";
 import { languageList } from "../../config/languages";
+import { useTheme } from "../../contexts/ThemeContext";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
@@ -25,12 +26,15 @@ export default function TemporaryDrawer() {
     const [state, setState] = React.useState(false);
     const [open, setOpen] = React.useState(false);
     const { t, setLanguage } = useTranslation();
+    const { currentTheme, lightTheme, darkTheme } = useTheme();
     const handleClick = () => {
         setOpen(!open);
     };
 
+    console.log(currentTheme);
+
     return (
-        <Container className="asdasd">
+        <Container>
             <IconButton
                 color="primary"
                 aria-label="open drawer"
@@ -59,28 +63,42 @@ export default function TemporaryDrawer() {
                                 component="div"
                                 id="nested-list-subheader"
                             >
-                                Nested List Items
+                                <Text color="white">Nested List Items</Text>
                             </ListSubheader>
                         }
                     >
                         <ListItemButton>
                             <ListItemIcon>
-                                <SendIcon />
+                                <SendIcon color="primary" />
                             </ListItemIcon>
-                            <ListItemText primary="Sent mail" />
+                            <ListItemText>
+                                <Text mr="10px" color="white">
+                                    Sent mail
+                                </Text>
+                            </ListItemText>
                         </ListItemButton>
                         <ListItemButton>
                             <ListItemIcon>
-                                <DraftsIcon />
+                                <DraftsIcon color="primary" />
                             </ListItemIcon>
-                            <ListItemText primary="Drafts" />
+                            <ListItemText>
+                                <Text mr="10px" color="white">
+                                    Drafts
+                                </Text>
+                            </ListItemText>
                         </ListItemButton>
                         <ListItemButton onClick={handleClick}>
                             <ListItemIcon>
-                                <TranslateIcon />
+                                <TranslateIcon color="primary" />
                             </ListItemIcon>
-                            <ListItemText primary={t("Mudar idioma")} />
-                            {open ? <ExpandLess /> : <ExpandMore />}
+                            <ListItemText>
+                                <Text color="white">{t("Mudar idioma")}</Text>
+                            </ListItemText>
+                            {open ? (
+                                <ExpandLess color="primary" />
+                            ) : (
+                                <ExpandMore color="primary" />
+                            )}
                         </ListItemButton>
                         <Collapse in={open} timeout="auto" unmountOnExit>
                             {languageList.map((lang) => {
@@ -92,8 +110,10 @@ export default function TemporaryDrawer() {
                                                 setLanguage(lang);
                                             }}
                                         >
-                                            <ChevronRightIcon />
-                                            {lang.language}
+                                            <ChevronRightIcon color="primary" />
+                                            <Text color="white">
+                                                {lang.language}
+                                            </Text>
                                         </ListItemButton>
                                     </List>
                                 );
@@ -102,8 +122,15 @@ export default function TemporaryDrawer() {
                     </List>
                 </Box>
                 <div className="theme">
-                    <Text>Tema</Text>
-                    <Switch />
+                    <Text mr="10px" color="white">
+                        {t(currentTheme.isDark ? "Tema escuro" : "Tema claro")}
+                    </Text>
+                    <Switch
+                        checked={currentTheme.isDark}
+                        onClick={() => {
+                            currentTheme.isDark ? lightTheme() : darkTheme();
+                        }}
+                    />
                 </div>
             </Drawer>
         </Container>

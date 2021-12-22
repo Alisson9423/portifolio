@@ -34,7 +34,18 @@ export const GlobalStyle = createGlobalStyle`
         border: none;
     }
 
-    .MuiPaper-root{
+    .MuiPaper-root {
+        background: ${({ theme }) => theme.colors.primary} !important;
+        transition: all .5s !important;
+        .MuiBox-root{
+            background-color: transparent !important;
+            .MuiList-root{
+                background-color: transparent !important;
+                    .MuiListSubheader-root{
+                        background-color: transparent !important;
+                    }
+            }
+        }
         .theme {
             position: absolute;
             bottom: 5%;
@@ -43,6 +54,7 @@ export const GlobalStyle = createGlobalStyle`
             display: flex;
             align-items: center;
             justify-content: center;
+            width: 250px;
         }
     }
 

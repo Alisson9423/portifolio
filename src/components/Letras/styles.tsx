@@ -7,6 +7,7 @@ export const Container = styled.div`
     min-height: 100vh;
     padding-bottom: 100px;
     background-color: ${({ theme }) => theme.colors.primary};
+    transition: all 0.5s;
     li {
         list-style: none;
     }
@@ -20,6 +21,7 @@ export const Container = styled.div`
         max-width: 100%;
         width: 500px;
         background-color: ${({ theme }) => theme.colors.primary};
+        transition: all 0.5s;
     }
 
     .song {
@@ -45,17 +47,20 @@ export const Container = styled.div`
 
     .warning-message {
         color: ${({ theme }) => theme.colors.warning};
+        transition: all 0.5s;
         text-align: center;
     }
 
     .song-artist {
         color: ${({ theme }) => theme.colors.white};
+        transition: all 0.5s;
         opacity: 0.4;
         max-width: 400px;
     }
 
     .lyrics-container {
         color: ${({ theme }) => theme.colors.white};
+        transition: all 0.5s;
         opacity: 0.4;
     }
 
@@ -66,7 +71,11 @@ export const Container = styled.div`
 `;
 
 export const HeaderStyles = styled(Flex)`
-    background-image: url("https://images.unsplash.com/photo-1506157786151-b8491531f063?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80");
+    /* background-image: url("https://images.unsplash.com/photo-1506157786151-b8491531f063?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"); */
+    background-image: ${({ theme }) =>
+        theme.isDark
+            ? "url('https://images.unsplash.com/photo-1506157786151-b8491531f063?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80')"
+            : "url('https://blog.emania.com.br/wp-content/uploads/2015/10/thumb-04.jpg')"};
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -77,6 +86,7 @@ export const HeaderStyles = styled(Flex)`
     justify-content: center;
     padding: 100px 0;
     position: relative;
+    transition: all 0.5s;
     &::after {
         content: "";
         position: absolute;
@@ -93,6 +103,7 @@ export const HeaderStyles = styled(Flex)`
     h1 {
         margin: 0 0 30px;
         color: ${({ theme }) => theme.colors.primaryBright};
+        transition: all 0.5s;
     }
 `;
 
@@ -120,6 +131,7 @@ export const Form = styled(Formik)`
         font-size: 16px;
         padding: 13px 30px;
         cursor: pointer;
+        transition: all 0.5s;
         &:active {
             transform: scale(0.95);
         }
@@ -143,6 +155,7 @@ export const TableStyles = styled(Box)`
                     color: ${({ theme }) => theme.colors.white};
                     font-size: 1rem;
                     font-weight: 400;
+                    transition: all 0.5s;
                     &:nth-child(4) {
                         text-align: center;
                     }
@@ -153,6 +166,7 @@ export const TableStyles = styled(Box)`
                 cursor: pointer;
                 &.active {
                     background-color: ${({ theme }) => theme.colors.secondary};
+                    transition: all 0.5s;
                 }
                 .td {
                     img {
@@ -200,7 +214,8 @@ export const ModalStyles = styled(Box)`
             width: 100%;
             height: 100%;
             -webkit-mask: url(${closeImg});
-            background-color: ${({ theme }) => theme.colors.white};
+            background-color: ${({ theme }) => theme.colors.primary};
+            transition: all 0.5s;
         }
     }
 
@@ -210,8 +225,14 @@ export const ModalStyles = styled(Box)`
         align-items: center;
         justify-content: space-between;
         padding: 0px 20px;
-        background-color: ${({ theme }) => theme.colors.primary};
+        background-color: ${({ theme }) => theme.colors.primaryBright};
         border-radius: 5px 5px 0 0;
+        transition: all 0.5s;
+    }
+
+    .text-content {
+        color: ${({ theme }) => theme.colors.white};
+        transition: all 0.5s;
     }
 
     .content-body {
@@ -219,8 +240,9 @@ export const ModalStyles = styled(Box)`
         max-height: 70vh;
         width: 100%;
         overflow-y: scroll;
-        background-color: ${({ theme }) => theme.colors.white};
+        background-color: ${({ theme }) => theme.colors.primary};
         border-radius: 0px 0px 5px 5px;
+        transition: all 0.5s;
         &::-webkit-scrollbar {
             -webkit-appearance: none;
         }

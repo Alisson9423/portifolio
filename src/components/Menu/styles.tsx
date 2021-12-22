@@ -9,4 +9,5 @@ export const Container = styled.div`
     padding-left: 12px;
     border-radius: 50%;
     z-index: 99;
+    transition: all 0.5s;
 `;
