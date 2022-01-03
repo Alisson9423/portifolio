@@ -118,9 +118,10 @@ export const ExpressionBbox = styled.div`
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    transition: box-shadow 0.2s ease-out;
+    transition: box-shadow 1s ease-out;
     &.active {
-        box-shadow: 0 0 10px 5px ${({ theme }) => theme.colors.success};
+        box-shadow: 0 0 10px 5px ${({ theme }) => theme.colors.secondary};
+        transition: box-shadow 1s ease-in-out;
     }
 
     img {
