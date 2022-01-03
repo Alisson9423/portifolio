@@ -6,7 +6,6 @@ import { Form as Formik } from "formik";
 export const Container = styled.div`
     min-height: 100vh;
     padding-bottom: 100px;
-    background-color: ${({ theme }) => theme.colors.primary};
     transition: all 0.5s;
     li {
         list-style: none;

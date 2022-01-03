@@ -11,11 +11,11 @@ export const fonts = {
 export const darkColorss = {
     white: "#FFFFFF",
     primary: "#10161b",
-    secondary: "#8d56fd",
+    secondary: "#1976d2",
     primaryBright: "#EDF5FC",
-    primaryDark: "#DA4167",
+    primaryDark: "#000",
     failure: "#ED4B9E",
-    success: "#31D0AA",
+    success: "#11ae68",
     warning: "#F4D35E",
 };
 
@@ -23,10 +23,10 @@ export const darkColorss = {
 export const lightColors = {
     white: "#000",
     primary: "#fff",
-    secondary: "#8d56fd",
+    secondary: "#1976d2",
     primaryBright: "#10161b",
-    primaryDark: "#DA4167",
+    primaryDark: "#fff",
     failure: "#ED4B9E",
-    success: "#31D0AA",
+    success: "#11ae68",
     warning: "#F4D35E",
 };

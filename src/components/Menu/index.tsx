@@ -31,8 +31,6 @@ export default function TemporaryDrawer() {
         setOpen(!open);
     };
 
-    console.log(currentTheme);
-
     return (
         <Container>
             <IconButton
@@ -103,7 +101,11 @@ export default function TemporaryDrawer() {
                         <Collapse in={open} timeout="auto" unmountOnExit>
                             {languageList.map((lang) => {
                                 return (
-                                    <List component="div" disablePadding>
+                                    <List
+                                        key={lang.code}
+                                        component="div"
+                                        disablePadding
+                                    >
                                         <ListItemButton
                                             sx={{ pl: 4 }}
                                             onClick={() => {
