@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Link } from "react-router-dom";
 import { Text } from "alisson-application";
 import { useTranslation } from "../../contexts/Localization";
 import { languageList } from "../../config/languages";
@@ -66,24 +67,22 @@ export default function TemporaryDrawer() {
                         }
                     >
                         <ListItemButton>
-                            <ListItemIcon>
-                                <SendIcon color="primary" />
-                            </ListItemIcon>
-                            <ListItemText>
-                                <Text mr="10px" color="white">
-                                    Sent mail
-                                </Text>
-                            </ListItemText>
+                            <Link to="/music">
+                                <ListItemText>
+                                    <Text mr="10px" color="white">
+                                        Musica
+                                    </Text>
+                                </ListItemText>
+                            </Link>
                         </ListItemButton>
                         <ListItemButton>
-                            <ListItemIcon>
-                                <DraftsIcon color="primary" />
-                            </ListItemIcon>
-                            <ListItemText>
-                                <Text mr="10px" color="white">
-                                    Drafts
-                                </Text>
-                            </ListItemText>
+                            <Link to="/text-reader">
+                                <ListItemText>
+                                    <Text mr="10px" color="white">
+                                        Leitor de Texto
+                                    </Text>
+                                </ListItemText>
+                            </Link>
                         </ListItemButton>
                         <ListItemButton onClick={handleClick}>
                             <ListItemIcon>

@@ -23,6 +23,12 @@ export const GlobalStyle = createGlobalStyle`
         box-sizing: border-box;
     }
 
+    a{
+        text-decoration: none;
+        color: inherit;
+        
+    }
+
     body {
         font-family: Arial, Helvetica, sans-serif;
         margin: 0;

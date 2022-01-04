@@ -25,16 +25,6 @@ export function TextReader() {
         window.speechSynthesis.speak(utterance);
     }
 
-    function changeLang(e: React.ChangeEvent<HTMLSelectElement>) {
-        const currentLang =
-            languageList.find((lang) => lang.locale === e.target.value) ||
-            languageList[0];
-
-        setLanguage(currentLang);
-
-        setLang(e.target.value);
-    }
-
     function focus(e: EventTarget) {
         const element = e as Element;
         element.classList.add("active");
@@ -53,24 +43,55 @@ export function TextReader() {
         }
     }
 
-    useEffect(() => {
-        speechSynthesis.addEventListener("voiceschanged", () => {
+    function getVoices() {
+        if (voices.length === 0) {
             const suportLang = speechSynthesis
                 .getVoices()
                 .filter((lang) => languageListKeys.includes(lang.lang));
 
             const options: Option[] = suportLang.map((item, key) => {
-                return { label: item.name, value: key + 1, others: item.lang };
+                return {
+                    label: item.name,
+                    value: key + 1,
+                    others: item.lang,
+                };
             });
 
             setOptions(options);
             setVoices(suportLang);
-        });
-    }, [lang]);
+        } else {
+            speechSynthesis.addEventListener("voiceschanged", () => {
+                const suportLang = speechSynthesis
+                    .getVoices()
+                    .filter((lang) => languageListKeys.includes(lang.lang));
+
+                const options: Option[] = suportLang.map((item, key) => {
+                    return {
+                        label: item.name,
+                        value: key + 1,
+                        others: item.lang,
+                    };
+                });
+
+                setOptions(options);
+                setVoices(suportLang);
+            });
+        }
+    }
+
+    useEffect(() => {
+        console.log(voices);
+        console.log("aqui");
+        if (voices.length === 0) {
+            getVoices();
+        }
+    }, [lang, voices]);
 
     useEffect(() => {
         setLang(currentLanguage.locale);
     }, [currentLanguage]);
+
+    console.log(voices);
 
     return (
         <Container>
