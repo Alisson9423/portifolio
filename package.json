@@ -5,7 +5,7 @@
     "dependencies": {
         "@mui/icons-material": "^5.2.0",
         "@types/react-lottie": "^1.2.6",
-        "alisson-application": "^1.0.10",
+        "alisson-application": "^1.0.11",
         "aplication-yetz": "^1.0.82",
         "axios": "^0.23.0",
         "concurrently": "^6.3.0",

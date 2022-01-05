@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { Button, Text, Box } from "alisson-application";
 import { Select } from "../Select";
 import { Option } from "../Select/types";
@@ -16,12 +16,28 @@ export function TextReader() {
     const [lang, setLang] = useState("pt-BR");
     const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
     const [options, setOptions] = useState<Option[]>([]);
+
     const utterance = new SpeechSynthesisUtterance();
+    const width = window.screen.width;
+
+    const hasLanguage = useCallback(() => {
+        return options.find(
+            (item) =>
+                item.others?.toLowerCase().replace(/_/g, "-") ===
+                currentLanguage.locale.toLowerCase()
+        );
+    }, [options, currentLanguage.locale]);
 
     function setTextMenssage(text: string) {
+        const voice =
+            voices.find(
+                (item) =>
+                    item.lang.toLowerCase().replace(/_/g, "-") ===
+                    lang.toLowerCase().replace(/_/g, "-")
+            ) || voices[0];
+
         utterance.text = text;
-        utterance.voice =
-            voices.find((item) => item.lang === lang) || voices[0];
+        utterance.voice = voice;
         window.speechSynthesis.speak(utterance);
     }
 
@@ -43,55 +59,39 @@ export function TextReader() {
         }
     }
 
-    function getVoices() {
-        if (voices.length === 0) {
-            const suportLang = speechSynthesis
-                .getVoices()
-                .filter((lang) => languageListKeys.includes(lang.lang));
+    const voice = useCallback(() => {
+        const voices = [...speechSynthesis.getVoices()];
 
-            const options: Option[] = suportLang.map((item, key) => {
-                return {
+        const updateLang = languageListKeys.map((item) => item.toLowerCase());
+
+        const optionsList: Option[] = voices.reduce((acc, item) => {
+            if (
+                updateLang.includes(item.lang.toLowerCase().replace(/_/g, "-"))
+            ) {
+                acc.push({
                     label: item.name,
-                    value: key + 1,
+                    value: 1,
                     others: item.lang,
-                };
-            });
+                });
+            }
 
-            setOptions(options);
-            setVoices(suportLang);
+            return acc;
+        }, [] as Option[]);
+
+        setOptions(optionsList);
+        setVoices(voices);
+        setLang(currentLanguage.locale);
+    }, [currentLanguage.locale]);
+
+    useEffect(() => {
+        if (voices.length === 0 && speechSynthesis.getVoices()) {
+            voice();
         } else {
             speechSynthesis.addEventListener("voiceschanged", () => {
-                const suportLang = speechSynthesis
-                    .getVoices()
-                    .filter((lang) => languageListKeys.includes(lang.lang));
-
-                const options: Option[] = suportLang.map((item, key) => {
-                    return {
-                        label: item.name,
-                        value: key + 1,
-                        others: item.lang,
-                    };
-                });
-
-                setOptions(options);
-                setVoices(suportLang);
+                voice();
             });
         }
-    }
-
-    useEffect(() => {
-        console.log(voices);
-        console.log("aqui");
-        if (voices.length === 0) {
-            getVoices();
-        }
-    }, [lang, voices]);
-
-    useEffect(() => {
-        setLang(currentLanguage.locale);
-    }, [currentLanguage]);
-
-    console.log(voices);
+    }, [voice, voices]);
 
     return (
         <Container>
@@ -102,22 +102,37 @@ export function TextReader() {
             <Text as="h3">{t("Escolha o tipo de voz")}</Text>
 
             <Box m="0 auto" mb="32px" width="300px">
+                {width < 1080 ? (
+                    <Text as="p" color="failure" textAlign="center">
+                        {t("Dispositivos mobiles necessário alterar")}
+                        <br />
+                        <strong> {t("idioma do dispositivo")}</strong>
+                    </Text>
+                ) : null}
                 <Select
                     options={options}
-                    placeholder="Idioma"
+                    initalValue={hasLanguage()}
+                    placeholder={t("Idioma")}
                     onChange={(value) => {
                         const currentLang =
                             languageList.find(
-                                (lang) => lang.locale === value.others
+                                (lang) =>
+                                    lang.locale
+                                        .toLowerCase()
+                                        .replace(/_/g, "-") ===
+                                    value.others
+                                        ?.toLowerCase()
+                                        .replace(/_/g, "-")
                             ) || languageList[0];
 
                         setLanguage(currentLang);
 
-                        setLang(value.others ? value.others : "");
+                        setLang(
+                            value.others ? value.others.replace(/_/g, "-") : ""
+                        );
                     }}
                 />
             </Box>
-
             <Button
                 variant="secondary"
                 m="0 auto"
@@ -129,7 +144,6 @@ export function TextReader() {
             </Button>
 
             <Modal active={modal} closeModal={setModal} readText={readText} />
-
             <main>
                 {humanExpressions.map(({ text, img }) => {
                     return (

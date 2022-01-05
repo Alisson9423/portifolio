@@ -14,7 +14,7 @@ export const darkColorss = {
     secondary: "#1976d2",
     primaryBright: "#EDF5FC",
     primaryDark: "#000",
-    failure: "#ED4B9E",
+    failure: "#fa0000",
     success: "#11ae68",
     warning: "#F4D35E",
 };
@@ -26,7 +26,7 @@ export const lightColors = {
     secondary: "#1976d2",
     primaryBright: "#10161b",
     primaryDark: "#fff",
-    failure: "#ED4B9E",
+    failure: "#fa0000",
     success: "#11ae68",
     warning: "#F4D35E",
 };

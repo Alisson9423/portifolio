@@ -3264,10 +3264,10 @@ ajv@^7.0.2:
     require-from-string "^2.0.2"
     uri-js "^4.2.2"
 
-alisson-application@^1.0.10:
-  version "1.0.10"
-  resolved "https://registry.yarnpkg.com/alisson-application/-/alisson-application-1.0.10.tgz#27e7da7cde5de69280e306603b39098318b52995"
-  integrity sha512-DqMpFJiel8Mt7Rvyy7gN8WrG1FifUiTw1+cP1irSy0FVjZuICoIRkCgJKxtTF9sGM1/vdNk5iXW6itu7zvBh8Q==
+alisson-application@^1.0.11:
+  version "1.0.11"
+  resolved "https://registry.yarnpkg.com/alisson-application/-/alisson-application-1.0.11.tgz#4a8c6001ef00a1b4995e9e11f41bad4679e973d0"
+  integrity sha512-0cRk1ho8qiJcwsh8Q+vOijAS+tiPwDdOWcuT+P6A+a+e0coolx2rQj18mAdH4JqXrgsJ88ALMp5mLw/2l2RfDQ==
   dependencies:
     "@emotion/react" "^11.6.0"
     "@emotion/styled" "^11.6.0"
