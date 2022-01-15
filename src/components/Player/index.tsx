@@ -23,7 +23,7 @@ export function Player(props: PlayerProps) {
         <ReactJkMusicPlayer
             glassBg
             audioLists={audioList}
-            autoPlay={false}
+            autoPlay={true}
             onAudioEnded={(audio) => {
                 if (playIndex < 14) {
                     setPlayIndex(playIndex + 1);

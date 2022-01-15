@@ -17,6 +17,7 @@ export const darkColorss = {
     failure: "#fa0000",
     success: "#11ae68",
     warning: "#F4D35E",
+    contrast: "#000",
 };
 
 // theme light
@@ -29,4 +30,5 @@ export const lightColors = {
     failure: "#fa0000",
     success: "#11ae68",
     warning: "#F4D35E",
+    contrast: "#000",
 };

@@ -1,4 +1,5 @@
 import { MouseEvent, MutableRefObject } from "react";
+
 export function clearHeight(itens: HTMLDivElement[]) {
     itens.forEach(function (item) {
         if (item) {

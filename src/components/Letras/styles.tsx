@@ -166,6 +166,27 @@ export const TableStyles = styled(Box)`
                 &.active {
                     background-color: ${({ theme }) => theme.colors.secondary};
                     transition: all 0.5s;
+                    button {
+                        svg {
+                            color: #fff !important;
+                        }
+                    }
+                    p {
+                        color: #fff;
+                    }
+                }
+
+                &:hover {
+                    background-color: ${({ theme }) => theme.colors.secondary};
+                    transition: all 0.5s;
+                    button {
+                        svg {
+                            color: #fff !important;
+                        }
+                    }
+                    p {
+                        color: #fff;
+                    }
                 }
                 .td {
                     img {

@@ -18,6 +18,7 @@ const ThemeContext = React.createContext<ThemeProviderProps>(
 );
 
 const ThemeContextProvider = ({ children }: SCThemeProviderProps) => {
+    console.log(light);
     const [currentTheme, setCurrentTheme] = useState<Theme>(dark);
     dark.colors = { ...dark.colors, ...darkColorss };
 

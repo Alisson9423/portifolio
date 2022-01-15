@@ -42,6 +42,14 @@ export const GlobalStyle = createGlobalStyle`
         border: none;
     }
 
+    .container-loader{
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
     .combo-box-select{
     
         span{
