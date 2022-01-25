@@ -3,7 +3,6 @@ import { Loader } from "../Loader";
 import { ModalStyles } from "./styles";
 
 import { useTranslation } from "../../contexts/Localization";
-import closeImg from "../../assets/img/close.svg";
 
 interface lyricsProps {
     rest: {

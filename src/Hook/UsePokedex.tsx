@@ -1,6 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { api } from "../services";
-import axios from "axios";
 
 interface UsePokedexProviderProps {
     children: React.ReactChild | React.ReactChild[] | React.ReactNode;
