@@ -57,6 +57,7 @@ interface lyricsData {
 const UseMusicContext = createContext<UseMusicData>({} as UseMusicData);
 
 export function UseMusicProvider(props: UseMusicProviderProps) {
+    //git
     const [music, setMusict] = useState<MusicData>();
     const [loader, setLoader] = useState<boolean>(false);
 
