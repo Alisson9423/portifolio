@@ -5,7 +5,7 @@ export interface MyFormValues {
 }
 
 export const initialValues: MyFormValues = {
-    search: "50 cent",
+    search: "",
 };
 
 export const validation = Yup.object().shape({

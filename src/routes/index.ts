@@ -6,7 +6,7 @@ import { PagePokedex } from "../pages/Pokedex";
 import { routesProps } from "./types";
 
 export const routes: routesProps[] = [
-    { path: "/music", exact: true, component: PageMusic, isPrivate: false },
+    { path: "/", exact: true, component: PageMusic, isPrivate: false },
     {
         path: "/financial-control",
         exact: true,
