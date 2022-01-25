@@ -20,8 +20,6 @@ export function Player(props: PlayerProps) {
     const { audioList, setActiveTr, playIndex, setPlayIndex } = props;
     const { currentTheme, lightTheme, darkTheme } = useTheme();
 
-    console.log(audioList);
-
     return (
         <ReactJkMusicPlayer
             glassBg

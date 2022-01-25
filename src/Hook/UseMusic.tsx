@@ -34,9 +34,14 @@ interface Artist {
     picture_small: string;
 }
 
+interface MusicDezer {
+    preview: string;
+}
+
 export interface Music {
     title: string;
     preview: string;
+    preview_deezer: string;
     id: number;
     artist: Artist;
     album: Album;
@@ -70,7 +75,22 @@ export function UseMusicProvider(props: UseMusicProviderProps) {
         setLoader(true);
         try {
             const { data } = await api.get<MusicData>(`suggest/${term}`);
-            setMusict(data);
+
+            const dados: Music[] = await Promise.all(
+                data.data.map(async (item) => {
+                    const { link } = item;
+                    const pos = link.lastIndexOf("/") + 1;
+                    const track = link.substring(pos);
+
+                    const { data } = await axios.get<MusicDezer>(
+                        `https://api.deezer.com/track/${track}`
+                    );
+
+                    return { ...item, preview_deezer: data.preview };
+                })
+            );
+
+            setMusict({ ...data, data: dados });
             setLoader(false);
         } catch (error) {
             console.log(error);
