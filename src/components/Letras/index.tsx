@@ -59,7 +59,7 @@ export function Music() {
                       name: item.title,
                       singer: item.artist.name,
                       cover: item.album.cover_big,
-                      musicSrc: item.preview.replace("http", ""),
+                      musicSrc: item.preview.replace("http://", ""),
                   };
               })
             : [];
