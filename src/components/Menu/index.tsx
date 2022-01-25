@@ -82,6 +82,15 @@ export default function TemporaryDrawer() {
                                 </ListItemText>
                             </Link>
                         </ListItemButton>
+                        <ListItemButton>
+                            <Link to="/pokedex">
+                                <ListItemText>
+                                    <Text mr="10px" color="white">
+                                        Pokedex
+                                    </Text>
+                                </ListItemText>
+                            </Link>
+                        </ListItemButton>
                         <ListItemButton onClick={handleClick}>
                             <ListItemIcon>
                                 <TranslateIcon color="primary" />
