@@ -5,4 +5,8 @@
 
 [[headers]]
   for = "/*"
-  
+
+[entryPoints.http.redirect]
+regex = "^http:\/\/(example\.com)(.*)"
+replacement = "http://www.$1/$2"
+permanent = true

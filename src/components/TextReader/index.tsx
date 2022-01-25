@@ -11,6 +11,7 @@ import { humanExpressions } from "./condig";
 import { Container, ExpressionBbox } from "./styles";
 
 export function TextReader() {
+    // falta refatorar algumas coisas ainda
     const { t, setLanguage, currentLanguage } = useTranslation();
     const [modal, setModal] = useState(false);
     const [lang, setLang] = useState("pt-BR");
